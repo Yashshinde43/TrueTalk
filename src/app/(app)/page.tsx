@@ -85,7 +85,7 @@ const page = () => {
               <div className="flex flex-col justify-center space-y-4">
                 <blockquote className="text-lg font-semibold leading-snug lg:text-xl lg:leading-normal xl:text-2xl">
                   “TrueTalk allows us to share the honest thoughts without fear
-                  of backlash. It's a safe space to speak up.”
+                  of backlash. It is a safe space to speak up.”
                 </blockquote>
               </div>
             </div>

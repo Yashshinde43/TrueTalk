@@ -20,8 +20,8 @@ import Link from "next/link";
 import { signInSchema } from "@/schemas/signInSchema";
 import { signIn } from "next-auth/react";
 import { BiSolidHomeAlt2 } from "react-icons/bi";
-const page = () => {
-  const { toast } = useToast();
+const Page = () => {
+  const {toast}  = useToast();
   const router = useRouter();
 
   // Zod Implementation
@@ -104,7 +104,7 @@ const page = () => {
             />
             <Button type="submit">Signin</Button>
             <Link href="/sign-up" > 
-              <h1 className="dark:text-black mt-3">haven't sign up ?</h1>
+              <h1 className="dark:text-black mt-3">haven&apos;t sign up ?</h1>
             </Link>
           </form>
         </Form>
@@ -121,4 +121,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

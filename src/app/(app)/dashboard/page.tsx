@@ -193,7 +193,7 @@ function UserDashboard() {
       </Button>
       <div className="text-center mb-4 mt-2 bg-gray-100 dark:bg-gray-900 py-8">
         <h1 className="text-3xl font-bold text-black dark:text-gray-200">
-          See {user?.username} You've got some messages
+          Hey {user?.username} you got some messages
         </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 ">
