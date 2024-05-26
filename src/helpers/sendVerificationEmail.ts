@@ -10,10 +10,13 @@ export async function sendVerificationEmail(
     try {
         const { data, error } = await resend.emails.send({
             from: 'Acme <onboarding@resend.dev>',
-            to: email,
+            to: [email],
             subject: 'Verification code',
             react: VerificationEmail({ username, otp: verifycode }), // sending the email component
         });
+        if (error) {
+            Response.json({ error }, { status: 500 });
+        }
 
         return { success: true, message: "Verification Email send sucessfully" }
 
