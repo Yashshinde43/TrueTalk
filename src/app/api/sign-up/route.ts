@@ -50,19 +50,19 @@ export async function POST(request: Request) {
                 messages: []
             })
             await newUser.save();
-        }
-        // sending verification Email to the new user 
-        const emailResponse = await sendVerificationEmail(
-            email,
-            username,
-            verifyCode
-        )
+            // sending verification Email to the new user 
+            const emailResponse = await sendVerificationEmail(
+                email,
+                username,
+                verifyCode
+            )
 
-        if (!emailResponse.success) {
-            return Response.json({
-                success: false,
-                message: emailResponse.message
-            }, { status: 500 })
+            if (!emailResponse.success) {
+                return Response.json({
+                    success: false,
+                    message: emailResponse.message
+                }, { status: 500 })
+            }
         }
 
         return Response.json({
