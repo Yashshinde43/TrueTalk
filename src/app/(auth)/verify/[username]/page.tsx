@@ -27,7 +27,7 @@ const VerifyAccount = () => {
   const form = useForm<z.infer<typeof verifySchema>>({
     resolver: zodResolver(verifySchema),
   });
-  const onSubmit = async (data: z.infer<typeof verifySchema>) => {
+  const onSubmit = async  (data: z.infer<typeof verifySchema>) => {
     try {
       const response = await axios.post(`/api/verify-code`, {
         username: params.username,

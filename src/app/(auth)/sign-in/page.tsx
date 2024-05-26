@@ -22,7 +22,7 @@ import { signIn } from "next-auth/react";
 import { BiSolidHomeAlt2 } from "react-icons/bi";
 const Page = () => {
   const {toast}  = useToast();
-  const router = useRouter();
+  const router   = useRouter();
 
   // Zod Implementation
   const form = useForm<z.infer<typeof signInSchema>>({

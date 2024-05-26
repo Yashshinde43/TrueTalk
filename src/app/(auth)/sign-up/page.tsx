@@ -75,7 +75,7 @@ const Page = () => {
       setIsSubmitting(false);
     } catch (error) {
       toast({
-        title: "signup failed",
+        title: "Signup failed",
         description: "Something went wrong, please try again",
       });
       setIsSubmitting(false);
