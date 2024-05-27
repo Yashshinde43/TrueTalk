@@ -1,7 +1,11 @@
+// import { sendVerificationEmail } from "@/helpers/sendVerificationEmail";
 import dbConnect from "@/lib/dbConnect"
+import { resend } from "@/lib/resend";
 import UserModel from "@/model/User"
 import bcrypt from "bcryptjs"
-import { sendVerificationEmail } from "@/helpers/sendVerificationEmail"
+import EmailTemplate from "../../../../emails/VerificationEmail";
+import { Resend } from "resend";
+// import { sendVerificationEmail } from "@/helpers/sendVerificationEmail"
 
 export async function POST(request: Request) {
     try {
@@ -51,26 +55,37 @@ export async function POST(request: Request) {
             })
             await newUser.save();
             // sending verification Email to the new user 
-            const emailResponse = await sendVerificationEmail(
-                email,
-                username,
-                verifyCode
-            )
+            const resend = new Resend(process.env.RESEND_API_KEY);
 
-            if (!emailResponse.success) {
-                return Response.json({
-                    success: false,
-                    message: emailResponse.message
-                }, { status: 500 })
-            }
+            const { data, error } = await resend.emails.send({
+                from: 'Acme <onboarding@resend.dev>',
+                to: email,
+                subject: "Verification Code",
+                react: EmailTemplate({ username, otp: verifyCode }) as React.ReactElement,
+            });
+            return Response.json({ success: true, data });
+
+
+            //     const emailResponse = await sendVerificationEmail(
+            //         email,
+            //         username,
+            //         verifyCode
+            //     )
+
+            //     if (!emailResponse.) {
+            //         return Response.json({
+            //             success: false,
+            //             message: "Error in sending email",
+            //         }, { status: 500 })
+            //     }
+            // }
+
+            return Response.json({
+                success: true,
+                message: "User registered successfully. Please Verify your Email"
+            }, { status: 201 })
+
         }
-
-        return Response.json({
-            success: true,
-            message: "User registered successfully. Please Verify your Email"
-        }, { status: 201 })
-
-
     } catch (error) {
         console.log("Error Registering User", error);
         return Response.json(

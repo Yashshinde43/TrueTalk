@@ -108,7 +108,7 @@ const Page = () => {
                     />
                   </FormControl>
                   {isCheckingUsername && <Loader2 className="animate-spin" />}
-                  <FormDescription className="dark:text-black">
+                  <FormDescription className="text-black">
                     This is your public display name.
                   </FormDescription>
                   <FormMessage />
@@ -141,7 +141,7 @@ const Page = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="dark:text-black">
+                  <FormDescription className="text-black">
                     This is your public display name.
                   </FormDescription>
                   <FormMessage />

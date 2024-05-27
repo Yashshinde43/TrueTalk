@@ -55,10 +55,10 @@ const Page = () => {
     <div className="flex justify-center items-center min-h-screen dark:bg-gray-900">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold dark: text-gray-500">
+          <h1 className="text-4xl font-extrabold dark: text-black">
             Join TrueTalk
           </h1>
-          <p className="mb-4 text-gray-500">
+          <p className="mb-4 text-black">
             Sign in to start your anonymous adventure
           </p>
         </div>
@@ -69,13 +69,13 @@ const Page = () => {
               name="identifier"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gray-500">
+                  <FormLabel className="text-black">
                     Username/Email
                   </FormLabel>
                   <FormControl>
                     <Input placeholder="email/username" {...field} />
                   </FormControl>
-                  <FormDescription className="text-gray-500">
+                  <FormDescription className="text-black">
                     This is your public display name.
                   </FormDescription>
                   <FormMessage />
@@ -87,7 +87,7 @@ const Page = () => {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-gray-500">Password</FormLabel>
+                  <FormLabel className="text-black">Password</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
@@ -95,7 +95,7 @@ const Page = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="text-gray-500">
+                  <FormDescription className="text-black">
                     This is your public display name.
                   </FormDescription>
                   <FormMessage />
@@ -109,7 +109,7 @@ const Page = () => {
           </form>
         </Form>
         <div className="flex justify-center">
-          <h1 className="text-gray-500 font-semibold mt-2">Go to home Page</h1>
+          <h1 className="text-black font-semibold mt-2">Go to home Page</h1>
           <Button className="ml-3">
             <Link href="/">
               <BiSolidHomeAlt2 />
