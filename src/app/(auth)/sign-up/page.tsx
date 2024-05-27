@@ -86,8 +86,12 @@ const Page = () => {
     <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold dark:text-black">Join TrueTalk</h1>
-          <p className="mb-4 dark:text-black">Sign up to start your anonymous adventure</p>
+          <h1 className="text-4xl font-extrabold dark:text-black">
+            Join TrueTalk
+          </h1>
+          <p className="mb-4 dark:text-black">
+            Sign up to start your anonymous adventure
+          </p>
         </div>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -141,9 +145,7 @@ const Page = () => {
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription className="text-black">
-                    This is your public display name.
-                  </FormDescription>
+
                   <FormMessage />
                 </FormItem>
               )}
