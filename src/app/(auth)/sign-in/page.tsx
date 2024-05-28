@@ -73,7 +73,7 @@ const Page = () => {
                     Username/Email
                   </FormLabel>
                   <FormControl>
-                    <Input placeholder="email/username" {...field} />
+                    <Input placeholder="email/username" {...field} className="dark:bg-white text-black" />
                   </FormControl>
                   <FormDescription className="text-black">
                     This is your public display name.
@@ -93,6 +93,7 @@ const Page = () => {
                       type="password"
                       placeholder="Enter your Password"
                       {...field}
+                      className="dark:bg-white dark:text-black"
                     />
                   </FormControl>
                   <FormDescription className="text-black">
@@ -102,15 +103,15 @@ const Page = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Signin</Button>
+            <Button type="submit" className="dark:bg-black dark:text-white">Signin</Button>
             <Link href="/sign-up" > 
               <h1 className="dark:text-black mt-3">haven&apos;t sign up ?</h1>
             </Link>
           </form>
         </Form>
         <div className="flex justify-center">
-          <h1 className="text-black font-semibold mt-2">Go to home Page</h1>
-          <Button className="ml-3">
+          <h1 className="text-black font-semibold mt-2 dark:bg-gray-">Go to home Page</h1>
+          <Button className="ml-3 dark:bg-black dark:text-white">
             <Link href="/">
               <BiSolidHomeAlt2 />
             </Link>

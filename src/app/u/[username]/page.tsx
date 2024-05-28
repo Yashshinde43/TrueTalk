@@ -28,21 +28,29 @@ export default function Component() {
 
   const handleSubmit = async () => {
     try {
+      if (!user) {
+        toast({
+          title: "Error",
+          description: "You must be logged in order to send a messages.",
+        });
+        return;
+      }
       const response = await axios.post<ApiResponse>("/api/send-message", {
         username: user?.username,
         content: message,
       });
-      toast({
-        title: "Send Successfully",
-        description: "Your message will be displayed to the admin",
-      });
-      setMessage(""); // Clear the message field after successful submission
-      // console.log(response)
-    } catch (error) {
-      toast({
-        title: "Try again later",
-        description: "Cannot send messages.",
-      });
+      if (response.data) {
+        toast({
+          title: "Send Successfully",
+          description: "Your message will be displayed to the admin",
+        });
+        setMessage(""); // Clear the message field after successful submission
+      } else {
+        throw new Error(response.data || "Failed to send message");
+      }
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      
     }
   };
 

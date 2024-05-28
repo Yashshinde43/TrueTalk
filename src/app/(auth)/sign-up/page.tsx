@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import Link from "next/link";
+
 const Page = () => {
   const [username, setUsername] = useState("");
   const [usernameMessage, setUsernameMessage] = useState("");
@@ -65,19 +66,21 @@ const Page = () => {
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
     setIsSubmitting(true);
     try {
+      console.log('Submitting data:', data);
       const response = await axios.post("/api/sign-up", data);
 
       toast({
-        title: "success",
+        title: "Success",
         description: response.data.message,
       });
-      router.replace(`/verify/${username}`);
-      setIsSubmitting(false);
-    } catch (error) {
+      router.replace(`/verify/${data.username}`);
+    } catch (error: any) {
+      console.error('Signup error:', error.response?.data || error.message);
       toast({
         title: "Signup failed",
-        description: "Something went wrong, please try again",
+        description: error.response?.data.message || "Something went wrong, please try again",
       });
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -100,7 +103,7 @@ const Page = () => {
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="dark:text-black">Username</FormLabel>
+                  <FormLabel className="dark:text-black '">Username</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="Enter your Username"
@@ -109,6 +112,7 @@ const Page = () => {
                         field.onChange(e);
                         debounced(e.target.value);
                       }}
+                      className="dark:bg-white dark:text-black"
                     />
                   </FormControl>
                   {isCheckingUsername && <Loader2 className="animate-spin" />}
@@ -124,9 +128,9 @@ const Page = () => {
               name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="dark:text-black">Email</FormLabel>
+                  <FormLabel className="dark:text-black dark:bg-white">Email</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter your email" {...field} />
+                    <Input placeholder="Enter your email" {...field} className="dark:bg-white dark:text-black"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -143,28 +147,28 @@ const Page = () => {
                       type="password"
                       placeholder="Enter your Password"
                       {...field}
+                      className="dark:bg-white dark:text-black"
                     />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type="submit" disabled={isSubmitting}>
+            <Button className="dark:bg-black dark:text-white" type="submit" disabled={isSubmitting}>
               {isSubmitting ? (
                 <>
                   <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
                 </>
               ) : (
-                "signup"
+                "Sign up"
               )}
             </Button>
           </form>
         </Form>
         <div>
           <p>
-            Already a member ? {""}
-            <Link href="/sign-in" className="text-blue-600 hover:text-blue-800">
+            Already a member?{" "}
+            <Link href="/sign-in" className="text-blue-600  hover:text-blue-800">
               Sign in
             </Link>
           </p>
